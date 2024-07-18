@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohit Portfolio</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff; /* Text color to contrast the background */
+            background-color: #6a0dad; /* Base background color */
+            background-image: url('image.png'); /* Background image */
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            background-attachment: fixed; /* Fixed background image */
+            background-position: center; /* Center the background image */
+            overflow-x: hidden; /* Prevent horizontal scrollbar */
+        }
+
+        /* Container layout */
+        .container {
+            display: flex;
+            justify-content: flex-start;
+            padding: 0;
+            max-width: 1200px; /* Limit container width for better readability */
+            margin: auto; /* Center align the container */
+        }
+
+        .sidebar {
+            width: 200px; /* Width of sidebar */
+            background-color: #1a1a1a; /* Semi-transparent background */
+            color: white;
+            padding-top: 20px;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+
+.sidebar h3 {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            position: relative;
+            font-style: italic;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+        .sidebar a::after {
+    content: '';
+    position: absolute;
+    left: 10%; /* Adjust left position to center the line */
+    bottom: 0;
+    width: 80%; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    background-color: yellow;
+    box-shadow: 0 2px 5px rgba(255, 255, 0, 0.5); /* Yellow shadow effect */
+}
+
+.sidebar a:hover::after {
+    transform: scaleX(1); /* Scale to full width on hover */
+}
+        .main-content {
+            flex: 1; /* Fill remaining space */
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background for main content */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-left: 20px; /* Add some margin to separate sidebar and main content */
+        }
+
+        .profile-container {
+            width: 90%; /* Full width profile picture container */
+            margin-left: 40px;
+            margin-bottom: 10px; /* Remove margin between profile picture and content */
+        }
+
+        .profile-pic {
+            width: auto;
+            height: auto;
+            max-width: 100%; /* Ensure image doesn't exceed container width */
+            max-height: 400px; /* Maximum height of profile picture */
+            width: 100%; /* Ensure image scales properly */
+            border-radius: 10px;
+            border: 5px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            image-rendering: -webkit-optimize-contrast; /* Sharpen the image */
+        }
+
+        .content {
+            width: 100%; /* Ensure content takes full width */
+            padding-top: 20px; /* Add space above the sections */
+        
+
+            section {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8); /* Darker semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px; /* Add spacing between sections */
+            color: #fff; /* White text */
+        }
+
+        section:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #fff; /* Adjust text color */
+        }
+
+        .education-grid, .project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .education-item, .project {
+            border: none; /* Remove border */
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left; /* Align text within items */
+        }
+
+        .education-item {
+    border: none; /* Remove border */
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Align text within education items */
+    position: relative; /* Ensure position context for absolute positioning */
+}
+        .education-title, .project-title {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .education-details, .project-description {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .course-link {
+    position: absolute;
+    bottom: 16px; /* Adjust button position from bottom */
+    right: 16px; /* Adjust button position from right */
+    padding: 8px 16px; /* Padding for button */
+    border: 2px solid white; /* White border */
+    border-radius: 20px; /* Rounded corners */
+    background-color: #a55bc7; /* Light violet background */
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+.course-link:hover {
+    background-color: #9446ad; /* Darker violet on hover */
+    transform: translateY(-2px); /* Move up slightly on hover */
+}
+
+         /* Responsive layout adjustments */
+         @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .sidebar {
+                width: 100%; /* Full width sidebar on small screens */
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
+
+        #reach-me {
+            margin-top: 40px; /* Add margin for spacing */
+        }
+
+        .reach-me-icons {
+            display: flex; /* Use flexbox to align icons vertically */
+            flex-direction: column; /* Align icons in a column */
+            margin-top: 20px; /* Margin between icons */
+        }
+
+        .reach-me-icons a {
+            margin: 10px 0; /* Margin around each icon */
+            transition: transform 0.3s ease; /* Smooth transition on hover */
+        }
+
+        .reach-me-icons a:hover {
+            transform: translateY(-5px); /* Move icon up slightly on hover */
+        }
+
+        .reach-me-icons img {
+            width: 50px; /* Adjust icon size */
+            height: 50px; /* Adjust icon size */
+            border-radius: 50%; /* Make icons circular */
+            background-color: #fff; /* White background for icons */
+            padding: 10px; /* Add padding to create space around icons */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+        }
+        #reach-me {
+    margin-top: 40px; /* Add margin for spacing */
+}
+
+.reach-me-icons {
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Align icons in a column */
+    /* align-items: center; Center items horizontally */
+    margin-top: 20px; /* Margin between icons */
+}
+
+.icon-item {
+    /* text-align: center; Center text */
+    margin-bottom: 10px; /* Margin between items */
+}
+
+.icon-item span {
+    display: block; /* Ensure each name is on a new line */
+    margin-bottom: 5px; /* Margin between name and icon */
+}
+
+.reach-me-icons a {
+    display: block; /* Ensure icons are block-level for better spacing */
+    width: 40px; /* Adjust icon width */
+    height: 40px; /* Adjust icon height */
+    transition: transform 0.3s ease; /* Smooth transition on hover */
+}
+
+.reach-me-icons a img {
+    max-width: 100%; /* Ensure icon does not exceed container width */
+    max-height: 100%; /* Ensure icon does not exceed container height */
+}
+
+.reach-me-icons a:hover {
+    transform: translateY(-5px); /* Move icon up slightly on hover */
+}
+.copyright {
+    text-align: center; /* Center align the copyright notice */
+    margin-top: 20px; /* Adjust spacing from the previous section */
+    color: rgba(255, 255, 255, 0.8); /* Adjust color and opacity */
+    font-size: 15px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h3>Navigation Panel</h3> 
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#internship">Internship</a>
+            <a href="#projects">Projects</a>
+            <a href="#reach-me">Reach Me</a>
+        </div>
+        <div class="main-content">
+            <div class="profile-container">
+                <img src="https://i.ibb.co/XW55MCG/pic2.png" alt="Profile Picture" class="profile-pic">
+            </div>
+            <div class="content">
+                <section id="about">
+                    <h2>About</h2>
+                    <i><center><h1>Hello, this is <span style="color:#87CEEB;">Mohit Kaushik.</span> You can see my <a href="https://drive.google.com/file/d/1DBT_AX7gfOFr_4vfghAV5nvPqg0rkCQz/view?usp=drive_link" style="color: #FFA500;">resume</a> over here.</h1></center></i>
+                    <p>
+                        I am originally from Haryana, India known for its rich cultural heritage, vibrant festivals, and being a major agricultural hub in India.
+                    </p>
+                    <p>
+                        I have two STEM degrees and a strong background in Machine Learning, Statistics, Data Science/Analytics, and Computer Science. I have a passion for analyzing and solving complex problems, and I am eager to contribute my skills and knowledge to the industry.
+                    </p>
+                    <p>
+                        Besides, music is a big part of my life, I find peace in nature, cherish family time.</p>
+                    <p>I am currently seeking for fall 2024 co-op positions. If you're interested in connecting or have any opportunities you'd like to discuss, please feel free to reach out!</p>
+                    <p>
+                        Thank you for Visiting!
+                    </p>
+                </section>
+                <section id="education">
+                    <h2>Education</h2>
+                    <div class="education-grid">
+                        <div class="education-item">
+                            <h3 class="education-title">Master of Engineering, Applied Data Science</h3>
+                            <p class="education-details">University of Victoria, BC</p>
+                            <h5>Sep 2023 - Sep 2025</h5>
+                            <p>Coursework Highlights: Optimization for Machine Learning (96%), Data Analysis and Pattern Recognition (88%)</p>
+                            <p></p><br><br>
+                            <a href="https://www.uvic.ca/ecs/ece/future/mads/index.php" class="course-link" target="_blank">More Info</a>
+                        </div>
+                
+                        <div class="education-item">
+                            <h3 class="education-title">Bachelor of Technology, Computer Science and Engineering</h3>
+                            <p class="education-details">Vellore Institute of Technology, Chennai, India</p>
+                            <h5>July 2019 - May 2023</h5>
+                            <p>Coursework Highlights: Business Intelligence (92%), Statistics for Engineers (83%)</p>
+                            <p></p><br><br>
+                            <a href="https://vit.ac.in/schools/school-of-computer-science-and-engineering-for-ug-courses" class="course-link" target="_blank">More Info</a>
+                        </div>
+                    </div>
+                </section>
+                <section id="internship">
+                    <h2>Internship</h2>
+                    <div class="internship-item">
+                        <h3 class="internship-title">Data Analyst Intern</h3>
+                        <b><p class="internship-details">Maruti Suzuki India Limited, Haryana, India</p></b>
+                        <h5>Sept 2022 - Nov 2022</h5>
+                        <ul class="internship-ul">
+                            <li>Designed and implemented an automated web crawler to gather data from dealerships.</li>
+                            <li>Improved dealer data accuracy by 30% through automation and meticulous data cleaning.</li>
+                            <li>Collaborated with analysts to leverage raw data for enhanced decision-making processes.</li>
+                            <li>Generated 50 strategic visualizations from raw data, boosting decision-making efficiency by 25%.</li>
+                        </ul>
+                    </div>
+                
+                    <div class="internship-item">
+                        <h3 class="internship-title">Research Intern</h3>
+                        <b><p class="internship-details">Vellore Institute of Technology, Chennai, India</p></b>
+                        <h5>June 2022 - Aug 2022</h5>
+                        <ul class="internship-ul">
+                            <li>Developed a machine learning model for classifying patients with Mild Cognitive Impairment (MCI) or Alzheimer's Disease (AD).</li>
+                            <li>Enhanced MRI dataset quality and reliability by 85% through advanced data cleaning techniques.</li>
+                            <li>Reduced data complexity by 30% with ANOVA-based feature reduction, preserving critical information.</li>
+                            <li>Achieved 85% accuracy in patient classification using intricate MRI image analysis techniques.</li>
+                        </ul>
+                    </div>
+                </section>
+                <section id="projects">
+                    <h2>Projects</h2>
+                    <div class="projects-grid">
+                        <div class="project">
+                            <h3 class="project-title"><a href="https://github.com/mkaushik07/Alzheimer_disease_prediction" target="_blank">Prognostic Model for Alzheimer's Disease</a></h3>
+                            <p class="project-description">Analyzed sMRI and rs-fMRI to distinguish MCI and AD stages, achieving groundbreaking insights.</p>
+                        </div>
+                    
+                        <div class="project">
+                            <h3 class="project-title"><a href="https://github.com/mkaushik07/medical_insurance_cost" target="_blank">Medical Insurance Cost Prediction</a></h3>
+                            <p class="project-description">Created a predictive model using MICE & one-hot encoding, revealing correlations with factors like smoking.</p>
+                        </div>
+                    
+                        <div class="project">
+                            <h3 class="project-title"><a href="https://github.com/mkaushik07/customer_churn_analysis" target="_blank">Customer Churn Prediction Dashboard</a></h3>
+                            <p class="project-description">Developed a dynamic Power BI dashboard for effective customer churn analysis, enhancing operational efficiency.</p>
+                        </div>
+                    </div>
+                </section>
+                <section id="reach-me">
+                    <h2>Reach Me</h2>
+                    <p>
+                        Feel free to reach out to me. I am just a click away!!
+                    </p>
+                    <div id="reach-me" class="reach-me-icons">
+                        <div class="icon-item">
+                            <b><span>Email</span></b><br>
+                            <a href="mailto:mohit.ms2023@gmail.com"><img src="https://i.ibb.co/qnGWhHB/gmail.png" alt="Email"></a>
+                        </div><br>
+                        <div class="icon-item">
+                            <b><span>LinkedIn</span></b><br>
+                            <a href="https://www.linkedin.com/in/mohit-kaushik-7023b5201/?trk=opento_sprofile_topcard" target="_blank"><img src="https://i.ibb.co/fGWH9bQ/linkedin.png" alt="LinkedIn"></a>
+                        </div><br>
+                        <div class="icon-item">
+                           <b><span>GitHub</span></b><br>
+                            <a href="https://github.com/mkaushik07"><img src="https://i.ibb.co/G2mxs09/github.png" alt="GitHub" target="_blank"></a>
+                        </div>
+                    </div>
+                    
+                </section>
+                <p class="copyright">&copy; Mohit Kaushik, e-Portfolio</p> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>
